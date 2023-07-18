@@ -6,6 +6,10 @@
 (defcfun "cozo_close_db" :boolean (id :int))
 (defcfun "cozo_run_query" :pointer (db_id :int) (script_raw :string) (params_raw :string) (immutable_query :boolean))
 (defcfun "cozo_free_str" :void (s :pointer))
+(defcfun "cozo_export_relations" :pointer (db_id :int) (json_payload :string))
+(defcfun "cozo_import_relations" :pointer (db_id :int) (json_payload :string))
+(defcfun "cozo_backup" :pointer (db_id :int) (out_path :string))
+(defcfun "cozo_restore" :pointer (db_id :int) (in_path :string))
 
 ; code for formating output is borrowed from this url: https://gist.github.com/WetHat/a49e6f2140b401a190d45d31e052af8f
 
@@ -71,6 +75,38 @@
   
 
 ; end def format table
+
+
+; use like this: (export-relations 0 "{\"relations\":[\"rel\"]}")
+; returns a json to be written
+
+(defun export-relations(db-id json)
+  (let* ((s (cozo-export-relations db-id json ))
+	(ret (cffi:foreign-string-to-lisp s)))
+    (cozo-free-str s)
+    (with-input-from-string (s ret)
+      (json:decode-json s)))) 
+
+(defun import-relations(db-id json)
+  (let* ((s (cozo-import-relations db-id json ))
+	(ret (cffi:foreign-string-to-lisp s)))
+    (cozo-free-str s)
+    (with-input-from-string (s ret)
+      (json:decode-json s))))
+
+(defun backup(db-id out-path)
+  (let* ((s (cozo-backup db-id out-path ))
+	(ret (cffi:foreign-string-to-lisp s)))
+    (cozo-free-str s)
+    (with-input-from-string (s ret)
+      (json:decode-json s))))
+
+(defun restore(db-id in-path)
+  (let* ((s (cozo-restore db-id in-path ))
+	(ret (cffi:foreign-string-to-lisp s)))
+    (cozo-free-str s)
+    (with-input-from-string (s ret)
+      (json:decode-json s))))
 
 (defun open-db(db-dir)
   (let ((db-id-ptr (foreign-alloc :int :initial-element 0)))
