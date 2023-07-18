@@ -66,7 +66,7 @@
 	     (rows (cdr (assoc :ROWS content)))
 	     (time-taken (cdr (assoc :TOOK content))))
 	(format-table t rows :column-label cl :column-align ca)
-	(format t "~% Time taken in seconds: ~a" time-taken)
+	(format t "~% Time taken in seconds: ~5$ " time-taken)
 	)))
   
 
@@ -103,8 +103,7 @@
 
 (defun query-interpolate(raw-string in-quote interpolated-string &rest params)
   (if (null raw-string)
-      (progn (print interpolated-string)
-	  (coerce (alexandria:flatten interpolated-string) 'string))
+      (coerce (alexandria:flatten interpolated-string) 'string)
       (let ((c (car raw-string)))
 	(cond ((equal c #\') (query-interpolate (cdr raw-string) (not in-quote) (cons c interpolated-string) (car params)))
 	      (in-quote (query-interpolate (cdr raw-string) T (cons c interpolated-string) (car params)))

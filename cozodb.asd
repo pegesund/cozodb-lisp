@@ -6,6 +6,6 @@
   :license  "Specify license here"
   :version "0.0.1"
   :serial t
-  :depends-on (#:cl-json #:cffi)
+  :depends-on (#:cl-json #:cffi #:alexandria)
   :components ((:file "package")
                (:file "cozodb")))
