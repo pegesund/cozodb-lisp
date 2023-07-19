@@ -51,7 +51,7 @@ This returns a integer which will be needed when doing a query. Query can be don
 1) Raw query. Following line creates a table and load it with two rows
 
 ```
-(run-query db-id"?[l1, l2] <- [['a', 1], ['b',2]] :create stored {l1, l2}")
+(run-query db-id "?[l1, l2] <- [['a', 1], ['b',2]] :create stored {l1, l2}")
 ```
 
 2) Interpolated query. The same query, but with interpolation. The percentage sign is the interpolation char.
@@ -79,8 +79,8 @@ Running examples are in the test.lisp file
 ## Backup and restore
 
 ```
-(backup db-id "filename)
-(restore db-id "filename)
+(backup db-id "filename")
+(restore db-id "filename")
 ```
 
 See in the test-file for example on how to backup/restore.
