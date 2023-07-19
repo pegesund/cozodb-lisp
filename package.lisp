@@ -5,6 +5,10 @@
   (:export #:open-db
 	   #:close-db
 	   #:run-query
+	   #:query
+	   #:backup
+	   #:restore
+	   #:show-as-table
 	   )
   )
 

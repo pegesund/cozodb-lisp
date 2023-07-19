@@ -66,7 +66,6 @@
   ))
 
 (defun run-query(id sr &optional (pr "") (iq nil))
-  (print iq)
   (let* ((s (cozo-run-query id sr pr iq))
 	(ret (cffi:foreign-string-to-lisp s)))
     (cozo-free-str s)
@@ -82,6 +81,13 @@
 	      ((equal c #\%) (query-interpolate (cdr raw-string) nil (append (val-to-chars (caar params)) interpolated-string) (cdar params)))
 	      (T (query-interpolate (cdr raw-string) nil (cons c interpolated-string) (car params)))))))
 
-(defun query(raw-string &rest params)
+(defun query-interpolate-top(raw-string &rest params)
   (query-interpolate (reverse (coerce raw-string 'list)) nil '() (reverse params)))
 
+(defun query(db-id query-string params &optional (extra-params "") (immutable nil))
+  (let* ((qs (query-interpolate-top query-string params))
+	 (res (run-query db-id qs extra-params immutable))
+	 (rows (assoc :ROWS res)))
+    (if rows
+	(cdr rows)
+	res)))
