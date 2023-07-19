@@ -30,7 +30,7 @@ First you need the binary file. You can get it two ways:
 - Download Cozodb and follow instructions for [building](https://github.com/cozodb/cozo/tree/main/cozo-lib-c)
 - Or you can use the Linux version which is in the library folder in this project. If you have a Mac/Windows feel free to compile and make a pull request.
 
-Make sure the .so file is in your path. Easy way on Linux is to do a export LD_LIBRARY_PATH=/path_to_dir_with_so_file
+Make sure the .so file is in your path. Easy way on Linux is to do a export LD_LIBRARY_PATH=/path_to_dir_with_so_file in the same whell you start lisp job from (or put it in your .bashrc for example)
 
 ### Usage
 
@@ -96,6 +96,17 @@ The function
 ```
 
 can be used to show results in a tabular, nice format. It will also show tame taken to run the query.
+
+## Tests
+
+Test can be found in the test.lisp file
+
+They can be run with:
+```
+(in-package #:cozodb-test)
+ (run! 'test-cozodb)
+```
+
 
 ### License
 
