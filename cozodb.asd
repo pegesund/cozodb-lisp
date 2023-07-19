@@ -1,11 +1,13 @@
 ;;;; cozodb.asd
 
 (asdf:defsystem #:cozodb
-  :description "Describe cozodb here"
-  :author "Your Name <your.name@example.com>"
-  :license  "Specify license here"
+  :description "Binding to Cozodb"
+  :author "Petter Egesund <petter.egesund@gmail.com>"
+  :license  "BSD-license"
   :version "0.0.1"
   :serial t
-  :depends-on (#:cl-json #:cffi #:alexandria)
+  :depends-on (#:cl-json #:cffi #:alexandria #:fiveam)
   :components ((:file "package")
-               (:file "cozodb")))
+               (:file "cozodb")
+	       (:file "table")
+	       ))
