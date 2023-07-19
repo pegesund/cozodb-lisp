@@ -95,7 +95,7 @@ The function
 (show-as-table (query...))
 ```
 
-can be used to show results in a tabular, nice format. It will also show tame taken to run the query.
+can be used to show results in a tabular, nice format. It will also show time taken to run the query.
 
 ## Tests
 
