@@ -2,7 +2,7 @@
 
 ## About Cozodb
 
-This is a Lisp wrapper for embedding [Cozodb] (https://www.cozodb.org)
+This is a Lisp wrapper for embedding [Cozodb](https://www.cozodb.org).
 
 Cozodb is a really nice database with some interesting features:
 
@@ -17,7 +17,7 @@ Cozodb is a really nice database with some interesting features:
 
 Cozodb is based upon Datalog and is really easy to do pretty advanced logic with some easy queries. Syntax is really nice, readable and more powerfull than SQL - as far as I can see :)
 
-Documentation on usage is [here] (https://docs.cozodb.org/en/latest/)
+Documentation on usage is [here](https://docs.cozodb.org/en/latest/).
 
 ## Lisp api
 
